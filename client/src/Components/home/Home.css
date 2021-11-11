@@ -1,0 +1,16 @@
+.form{
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+   
+   
+}
+.wp_form{
+     background-color: #fadbd8;
+     padding: 33px 0;
+     margin: 33px 0;
+
+}
+.btn_email{
+    border-radius: 5px;
+}

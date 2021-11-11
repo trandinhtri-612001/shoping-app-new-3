@@ -1,0 +1,91 @@
+ api list for shoping app.
+ CRUD Query List Created by Back-end Developer
+ 
+
+ <......................./>
+
+
+ //api for user ...
+// server -> Router ->authuser.js
+//ex account user login ({
+    username: tonytran,
+    password: 123456$t
+})
+1. Join/register (POST)
+      api/auth/register
+{
+username:"",
+password:"",
+email:"",
+phonenumber:"",
+adress:""
+
+
+}
+
+2. Login (POST)
+    api/auth/login
+{
+    username: tonytran,
+    password: 123456$t
+}
+
+3. User-list (GET) for verifyAdminToken
+    api/auth/find
+  Authorization: Bearer + tokenadmin
+
+4. User-detail (GET) for  verifyToken
+    api/auth
+  Authorization: Bearer + tokenuser
+
+
+5. Update-user (put) for  verifyToken
+   api/auth/:id
+  Authorization: Bearer + tokenuser
+
+6. Delete-user (DELETE )  for  verifyToken
+    api/auth/:id
+  Authorization: Bearer + tokenuser
+
+<..........................>
+ // api for admin
+ //server -> Router -> AuthAdmin.js
+ //// ex account admin login ({
+    username: tonytran,
+    password: 123456tr
+})
+1. Join/create admin (POST)
+    api/auth/admin/register
+    Authorization: Bearer + token admin
+{
+    "username":"tonytran123",
+    "password":"123456tr",
+    "email":"grandinhtri3@gmail.com",
+    "phonenumber":"3456367543"
+}
+
+
+2. ADMIN Login (POST)
+   api/auth/admin/login
+{
+    "username":"tonytran123",
+    "password":"123456tr"
+}
+
+
+3. ADMIN-list (GET)  for verifyAdminToken
+   api/auth/admin/find
+   Authorization: Bearer + tokenadmin
+
+4. ADMIN-detail (GET)  for verifyAdminToken
+    api/auth/admin
+Authorization: Bearer + tokenadmin
+
+5. Update-ADMIN (PUT)  for verifyAdminToken
+    api/auth/admin/:id
+    Authorization: Bearer + tokenadmin
+
+
+6. Delete-ADMIN (DELETE)  for verifyAdminToken
+    api/auth/admin/:id
+    Authorization: Bearer + tokenadmin

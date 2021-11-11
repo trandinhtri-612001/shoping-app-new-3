@@ -1,0 +1,19 @@
+.img {
+    height:333px ;
+    justify-content: center;
+   
+}
+.buttontn{
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin: 250px 0 0 13px;
+    
+   
+    
+
+}
+ .text-link{
+     text-decoration: none;
+     color:slategrey ;
+     
+ }
