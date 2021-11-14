@@ -6,6 +6,8 @@ import { BsFillCartCheckFill, BsSearch } from 'react-icons/bs';
 import { Authcontext } from '../Contexts/authcontext';
 import { Cartcontext } from '../Contexts/cartcontext';
 import {FaUserCircle} from 'react-icons/fa'
+import Image from 'react-bootstrap/Image';
+
 const Singernavbar = () => {
     const { authsate: { isauthenticated, user } } = useContext(Authcontext)
     const { cartstate: { carts }, getcart } = useContext(Cartcontext);
@@ -21,7 +23,8 @@ const Singernavbar = () => {
                             to='/user/profile'
                             as={Link}
                         >
-                            <FaUserCircle className="iconuser" />{user.username}
+                           <Image src={user.img} className="imguser" roundedCircle />
+                            {user.username}
 
                         </Nav.Link>
                     </Nav.Item>

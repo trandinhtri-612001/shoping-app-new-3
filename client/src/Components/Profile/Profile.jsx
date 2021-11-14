@@ -20,6 +20,7 @@ const Profile = () => {
         history.push('/');
 
     }
+    console.log(user.img);
      const [lgShow, setLgShow] = useState(false);
     return (
         <div>
@@ -27,7 +28,7 @@ const Profile = () => {
             <Row xl={3} sm={2} xs={1} className='Profile container-fluid' >
                 <Col className="wpimg_profile "xl={3} >
                     <div className='img_profile'>
-                       <Image src={shirt1} className='img_pr' roundedCircle/>
+                       <Image src={user.img} className='img_pr' roundedCircle/>
                         <h4>{name}</h4>
                    </div>
                 </Col>

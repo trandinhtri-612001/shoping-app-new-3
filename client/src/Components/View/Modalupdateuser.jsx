@@ -9,6 +9,43 @@ import Col from 'react-bootstrap/Col'
 
 const Modalupdateuser = ({ Show, setLgShow }) => {
   const {authsate:{user},updateuser } = useContext(Authcontext)
+  
+  const [filenme, setfilenme] = useState('')
+      const uploadimg= async(e)=>{
+        const file = e.target.files[0];
+        const typeimg =file.name.split('.')[1]
+        if(typeimg != 'jpg'&& typeimg != 'png'&& typeimg !='jpag' ){
+          setupdateuserdata({...updateuserdata,img:''})
+          
+          setalert({ show:true, message: "file canot type " +typeimg })
+          setTimeout(() => {
+              setalert(null)
+          }, 3000)
+          console.log(typeimg);
+          return 0;
+        }else{
+         console.log(typeimg);
+        }
+
+        const base64 = await convserBase64(file)
+        setupdateuserdata({...updateuserdata,img:base64})
+       
+        console.log(base64)
+
+
+      }
+      const convserBase64 = (file)=>{
+        return new Promise((res,rej)=>{
+          const fileRender=new FileReader();
+          fileRender.readAsDataURL(file);
+          fileRender.onload=()=>{
+            res(fileRender.result);
+          };
+          fileRender.onerror = (err)=>{
+            rej(err);
+          };
+        });
+      };
   const [updateuserdata, setupdateuserdata] = useState({
      _id:user._id,
     username: user.username,
@@ -18,6 +55,7 @@ const Modalupdateuser = ({ Show, setLgShow }) => {
     password:'',
     confirmpassword:'',
     oldpassword:'',
+    img:''
  })
 	
 	//  useEffect(()=> setupdatepostdata(postdata),[postdata])
@@ -31,8 +69,10 @@ const Modalupdateuser = ({ Show, setLgShow }) => {
 		setupdateuserdata({...updateuserdata,[e.target.name]:e.target.value})
   }
    const [alert, setalert] = useState(null)
+
   const submitupdateuser = async (e) => {
     e.preventDefault();
+    console.log(updateuserdata);
     if (password !== confirmpassword   ) {
       setalert({ show:true, message: 'password do not match' })
       setTimeout(() => {
@@ -124,7 +164,10 @@ return 0
     <Form.Control type="password" name='oldpassword' value={oldpassword} onChange={onchangeupdatepostform} placeholder="oldpassword" />
               </Form.Group>
                
-              
+              <Form.Group className="mb-3"   controlId="formBasicPassword">
+    <Form.Label>oldpassword</Form.Label>
+    <Form.Control type="file" name='img'  onChange={uploadimg} placeholder="img file" />
+              </Form.Group>     
               
   <Form.Group className="mb-3" controlId="formBasicCheckbox">
     <Form.Check type="checkbox" label="Check me out" />

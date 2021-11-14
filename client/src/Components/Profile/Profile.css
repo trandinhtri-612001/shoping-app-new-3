@@ -10,6 +10,8 @@
 
 .img_pr{
     border:1px solid gray ;
+    max-width: 300px;
+    max-height: 300px;
 }
 .profile{
     border-right: 1px solid gray;

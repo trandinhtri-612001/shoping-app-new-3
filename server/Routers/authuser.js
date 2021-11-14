@@ -94,7 +94,8 @@ check('phonenumber').notEmpty().withMessage('phonenumber cannot taken')
             password: hashpassword,
             email: email,
             phonenumber: phonenumber,
-            adress:''
+            adress:'',
+            img:''
         })
         await newuser.save();
         const accessToken = await jwt.sign(
@@ -170,7 +171,7 @@ router.post('/login', async (req, res) => {
 // update user
 // api/auth/:id
 router.put('/:id', verifyToken, async (req, res) => {
-    const { username, password, email, phonenumber, adress,oldpassword } = req.body;
+    const { username, password, email, phonenumber, adress,oldpassword, img} = req.body;
         if (!username || !password || !email || !phonenumber) {
         return res.status(400).json({
             success: false,
@@ -208,7 +209,8 @@ router.put('/:id', verifyToken, async (req, res) => {
             password:hashpassword,
             email,
             phonenumber,
-            adress:adress
+            adress:adress,
+            img
         }
         const iduser = {_id:req.params.id}
 

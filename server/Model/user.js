@@ -24,6 +24,9 @@ const userSchema = new Schema({
         type: Object,
         required:Boolean
     },
+    img:{
+        type:String
+    },
     createdAt: {
         type: Date,
         default:Date.now

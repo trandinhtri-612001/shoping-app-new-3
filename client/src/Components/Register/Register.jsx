@@ -22,7 +22,8 @@ const {registerUser} = useContext(Authcontext)
         username: '',
         phonenumber:'',
 		password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+		img:''
         
 	})
 	console.log(registerform)
