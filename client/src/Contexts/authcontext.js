@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Authreducer } from '../Reducers/authreducer';
 import { LOCAL_STOGARE_TOKEN_NAME } from './content';
 import setaxiostoken from './axiostoken';
-
+import { apiUrl } from './content';
 
 export const Authcontext = createContext();
 
@@ -24,7 +24,7 @@ const Authcontextprovider = ({ children }) => {
         dispatch({type:"FAILURE",payload:null})
         }
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/login',userForm);
+            const res = await axios.post(`${apiUrl}/auth/login`,userForm);
             if (res.data.success) {
                 localStorage.setItem(LOCAL_STOGARE_TOKEN_NAME, res.data.accsessToken)
                 await loaduser();
@@ -45,7 +45,7 @@ const Authcontextprovider = ({ children }) => {
         }
         try {
             setaxiostoken(localStorage[LOCAL_STOGARE_TOKEN_NAME]);
-            const resuser = await axios.get('http://localhost:5000/api/auth');
+            const resuser = await axios.get(`${apiUrl}/auth`);
             if (resuser.data.success) {
                 dispatch({type:'GET_USER',payload:resuser.data.user})
     console.log(resuser)
@@ -73,7 +73,7 @@ useEffect(() => {
         dispatch({type:"FAILURE",payload:null})
         }
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/register',registerForm);
+            const res = await axios.post(`${apiUrl}/auth/register`,registerForm);
             if (res.data.success) {
 
                 return res.data
@@ -89,7 +89,7 @@ useEffect(() => {
     const updateuser = async(formupdate) => {
         
         try {
-            const response = await axios.put(`http://localhost:5000/api/auth/${formupdate._id}`, formupdate)
+            const response = await axios.put(`${apiUrl}/auth/${formupdate._id}`, formupdate)
             console.log(response)
             if (response.data.success) {
                 

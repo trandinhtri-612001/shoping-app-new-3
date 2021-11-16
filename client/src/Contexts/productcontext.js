@@ -33,7 +33,7 @@ const ProductContextProvider =
 				try {
 					const resproduct =
 						await axios.get(
-							`http://localhost:5000/api/post?m=8`
+							`${apiUrl}/post?m=8`
 						);
 					if (
 						resproduct.data
@@ -62,7 +62,7 @@ const ProductContextProvider =
 				try {
 					const resproduct =
 						await axios.get(
-							`http://localhost:5000/api/post/find/${_id}`
+							`${apiUrl}/post/find/${_id}`
 						);
 					if (
 						resproduct.data
@@ -83,7 +83,7 @@ const ProductContextProvider =
 				try {
 					const resproduct =
 						await axios.get(
-							`http://localhost:5000/api/post`
+							`${apiUrl}/post`
 						);
 					if (
 						resproduct.data

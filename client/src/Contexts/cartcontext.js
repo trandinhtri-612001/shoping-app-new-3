@@ -6,7 +6,7 @@ import React, {
 } from "react";
 import axios from "axios";
 import { Cartreducer } from "../Reducers/cartreducer";
-
+import { apiUrl } from "./content";
 export const Cartcontext =
 	createContext();
 const Cartcontextprovider = ({
@@ -68,7 +68,7 @@ const Cartcontextprovider = ({
 
 				const res =
 					await axios.post(
-						"http://localhost:5000/api/cart",
+						`${apiUrl}/cart`,
 						infoitem
 					);
 				if(res.data.success){
@@ -89,7 +89,7 @@ console.log(error);
 			try {
 				const res =
 					await axios.get(
-						"http://localhost:5000/api/cart/find"
+						`${apiUrl}/cart/find`
 					);
 				if (
 					res.data.success
@@ -119,7 +119,7 @@ console.log(error);
 		
 			try{
 				const resupdate = await axios.put(
-					`http://localhost:5000/api/cart/${id}`,
+					`${apiUrl}/cart/${id}`,
 					infoupdate
 
 				)
@@ -139,7 +139,7 @@ console.log(err)
 	const deletecart = async (_id) => {
 			
 			try{
-				const res= await axios.delete (`http://localhost:5000/api/cart/${_id}`)
+				const res= await axios.delete (`${apiUrl}/cart/${_id}`)
 				console.log(res.data)
 				dispatch({type:"DELETE_CART",payload:res.data.resdeletproduct})
 				return res.data.resdeletproduct

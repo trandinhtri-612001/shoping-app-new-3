@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import axios from "axios";
 import { OrderReducer } from "../Reducers/orderReducer";
+import { apiUrl } from "./content";
 
 export const Ordercontext =
 	createContext();
@@ -29,7 +30,7 @@ const Ordercontextprovider = ({
 // 			try {
 // 				const res =
 // 					await axios.post(
-// 						"http://localhost:5000/api/cart/order",
+// 						`${apiUrl}/cart/order`,
 // 						infoitem
 //                     );
 //                 console.log(res)
@@ -50,7 +51,7 @@ const Ordercontextprovider = ({
 			try {
 				const res =
 					await axios.get(
-						// "http://localhost:5000/api/cart/find"
+						// `${apiUrl}/cart/find`
 					);
 				if (
 					res.data.success
@@ -76,7 +77,7 @@ const Ordercontextprovider = ({
 	const deleteorder = async (_id) => {
 			
 			try{
-				const res= await axios.delete (`http://localhost:5000/api/cart/${_id}`)
+				const res= await axios.delete (`${apiUrl}/cart/${_id}`)
 				console.log(res.data)
 				dispatch({type:"DELETE_CART",payload:res.data.resdeletproduct})
 				return res.data.resdeletproduct
