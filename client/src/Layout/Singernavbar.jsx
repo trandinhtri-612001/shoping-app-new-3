@@ -30,8 +30,11 @@ const Singernavbar = () => {
                     </Nav.Item>
                     <Nav.Link
                         to='/user/cart'
-                        as={Link}>
-                        <BsFillCartCheckFill className="Bsfill" />
+                        as={Link} 
+                          className="Bsfill"
+                        >
+                   
+                        <BsFillCartCheckFill  />
                         <span>{carts.length}</span>
                     </Nav.Link>
                 </div>

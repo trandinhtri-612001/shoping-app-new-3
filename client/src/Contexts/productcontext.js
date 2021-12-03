@@ -102,6 +102,35 @@ const ProductContextProvider =
 				}
 			};
 
+			const search=async(query)=>{
+				
+				try {
+					const resproduct =
+						await axios.get(
+							`${apiUrl}/post/search?search=${query}`
+							
+						);
+					
+					if (
+						resproduct.data
+							.success
+					) {
+						dispatch({
+							type: "SEARCH_PRODUCT",
+							payload:
+								resproduct
+									.data
+									.respost,
+						});
+					}
+					return resproduct.data.respost;
+				} catch (error) {
+					console.log(error.message);
+				}
+				
+
+			};
+
 		const productcontextdata =
 			{
 				getfullproduct,
@@ -109,6 +138,7 @@ const ProductContextProvider =
 				getproduct,
 				product,
 				fullproduct,
+				search
 			};
 		return (
 			<ProductContext.Provider

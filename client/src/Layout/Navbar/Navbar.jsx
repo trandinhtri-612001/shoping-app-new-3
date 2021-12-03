@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext,useState} from 'react';
 import './Navbar.css';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
@@ -9,8 +9,26 @@ import Container from 'react-bootstrap/Container';
 import { BsFillCartCheckFill,BsSearch } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import Singernavbar from '../Singernavbar';
+import { ProductContext } from '../../Contexts/productcontext';
+import { useHistory } from 'react-router-dom'; 
 const Nacbar = () => {
-  
+
+  let history = useHistory ();
+const { productState:{products},search}= useContext(ProductContext);
+  const fcsearch=async(e)=>{
+   
+    e.preventDefault()
+const data = await search(query);
+history.push ('/search');
+ console.log(data);
+ console.log(products);
+  }
+const [query, setquery]= useState('');
+const onchangequery=(e)=>{
+setquery(e.target.value)
+
+}
+
     return (
         <>
             <Navbar bg="light" expand="lg">
@@ -46,17 +64,19 @@ const Nacbar = () => {
           Link
         </Nav.Link>
       </Nav>
-      <Form className="d-flex">
+      <Form className="d-flex" onSubmit={fcsearch}>
         <Form.Control
           type="search"
-          placeholder="Search"
+          placeholder="Search"S
           className="me-2"
           aria-label="Search"
+          onChange={onchangequery}
+
         />
-         <Button variant="outline-success">
-                  <Link to='/product' >
+         <Button variant="outline-success" type="submit"  >
+                 
                     <BsSearch className="Bsearch"/>
-                  </Link>
+                 
           </Button>
               </Form>
 

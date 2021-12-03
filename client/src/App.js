@@ -22,6 +22,7 @@ import Profile from './Components/Profile/Profile';
 import Cartcontextprovider from './Contexts/cartcontext';
 import Cart from './Components/Cart/Cart';
 import Ordercontextprovider from './Contexts/ordercontext';
+import Search  from './Components/search/Search'
 
 const App = () => {
  
@@ -42,6 +43,7 @@ const App = () => {
                 <Protectedrouer exact path='/register' component={RegisterForm} />
                   <Publicrouteisauth exact path='/user/profile' component={Profile} />
                   <Publicrouteisauth exact path='/user/cart' component={Cart}/>
+                  <Route exact path='/search' component={Search} />
 
                 
             </Switch>

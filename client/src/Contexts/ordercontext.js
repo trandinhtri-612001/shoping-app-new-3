@@ -24,26 +24,26 @@ const Ordercontextprovider = ({
 		}
 	);
 
-// 	const addorder =
-// 		async infoitem => {
+	const addorder =
+		async infoitem => {
 
-// 			try {
-// 				const res =
-// 					await axios.post(
-// 						`${apiUrl}/cart/order`,
-// 						infoitem
-//                     );
-//                 console.log(res)
-// 				if(res.data.success){
+			try {
+				const res =
+					await axios.post(
+						`${apiUrl}/cart/order`,
+						infoitem
+                    );
+                console.log(res)
+				if(res.data.success){
 					
-// 				 	dispatch({type:'ADD_ORDER',
-// 				 	payload:res.data.savedcart})
-// 				}
-// 				return res.data;
-// 			} catch (error) {
-// console.log(error);
-// 			}
-// 		};
+				 	dispatch({type:'ADD_ORDER',
+				 	payload:res.data.savedcart})
+				}
+				return res.data;
+			} catch (error) {
+console.log(error);
+			}
+		};
 	
 	//get cart
 	const getorder =
@@ -51,18 +51,18 @@ const Ordercontextprovider = ({
 			try {
 				const res =
 					await axios.get(
-						// `${apiUrl}/cart/find`
+						`${apiUrl}/cart/find`
 					);
 				if (
 					res.data.success
 				) {
-					// console.log(res.data.rescart)
-					// dispatch({
-					// 	type: "GET_CART",
-					// 	payload:
-					// 		res.data
-					// 			.rescart,
-					// });
+					console.log(res.data.rescart)
+					dispatch({
+						type: "GET_CART",
+						payload:
+							res.data
+								.rescart,
+					});
 				}
 
 				return res.data

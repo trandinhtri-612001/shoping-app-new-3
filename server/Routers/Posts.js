@@ -54,15 +54,50 @@ router.post('/', verifyAdminToken, async (req, res) => {
     }
     
 })
+// rouer search methor
+
+router.get('/search',async(req, res)=>{
+   const querys = req.query.search;
+
+    
+    try {
+      let respost 
+        if (querys !='') {
+            console.log(querys)
+   const query = req.query.search;
+            respost = await Posts.find({ title:{ $regex: querys },}).sort('price');
+            
+        } else {
+            respost = await Posts.find()
+        }
+        
+        
+        res.json({
+            success: true,
+            message: " find success",
+            respost
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        })
+    }
+
+})
+
 //get full product
 //api/post
 router.get('/', async(req, res) => {
-    const querym = req.query.m;
+    const querym =  parseFloat(req.query.m) ;
+    console.log("run"+typeof querym)
     try {
       let resfullPost 
         if (querym) {
-            console.log(querym)
-            resfullPost = await Posts.find().sort('price').limit(8);
+            
+            resfullPost = await Posts.find().sort('price').limit(querym);
             
         } else {
             resfullPost = await Posts.find()
@@ -155,10 +190,10 @@ router.put('/:id',verifyAdminToken, async (req, res) => {
 				message: 'Product/post not found or user not authorised'
 			})
         }
-        console.log(resupdatepost)
+        
         res.json({
             success: true,
-            message: "post update sucessfylly",
+            message: "post update successfully",
             resupdatepost
     
         })
